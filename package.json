@@ -1,0 +1,23 @@
+{
+  "name": "alexa-viera",
+  "version": "1.0.0",
+  "description": "Work in progress!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaundon/alexa-viera.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shaundon/alexa-viera/issues"
+  },
+  "homepage": "https://github.com/shaundon/alexa-viera#readme",
+  "dependencies": {
+    "alexa-sdk": "^1.0.9",
+    "request": "^2.81.0"
+  }
+}
