@@ -4,6 +4,15 @@ const {apiKey, appId, serverAddress} = require('./config.json');
 
 const skillName = 'TV Remote';
 
+const CODES = {
+  POWER: 'power',
+  NETFLIX: 'netflix',
+  MUTE: 'mute',
+  VOLUME_UP: 'volup,volup,volup,volup,volup',
+  VOLUME_DOWN: 'voldown,voldown,voldown,voldown,voldown',
+  PLAY_PAUSE: 'play'
+};
+
 const makeRequest = (command) => {
   return new Promise((fulfill, reject) => {
     request({
@@ -25,7 +34,7 @@ const makeRequest = (command) => {
 var handlers = {
 
     "TVIntent": function () {
-      makeRequest('power').then(
+      makeRequest(CODES.POWER).then(
         (success) => {
           this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
         },
@@ -37,7 +46,7 @@ var handlers = {
     },
 
     "NetflixIntent": function () {
-      makeRequest('netflix').then(
+      makeRequest(CODES.NETFLIX).then(
         (success) => {
           this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
         },
@@ -49,7 +58,7 @@ var handlers = {
     },
 
     "MuteIntent": function () {
-      makeRequest('mute').then(
+      makeRequest(CODES.MUTE).then(
         (success) => {
           this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
         },
@@ -61,7 +70,7 @@ var handlers = {
     },
 
     "VolUpIntent": function () {
-      makeRequest('volup').then(
+      makeRequest(CODES.VOLUME_UP).then(
         (success) => {
           this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
         },
@@ -73,7 +82,7 @@ var handlers = {
     },
 
     "VolDownIntent": function () {
-      makeRequest('voldown').then(
+      makeRequest(CODES.VOLUME_DOWN).then(
         (success) => {
           this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
         },
@@ -85,7 +94,7 @@ var handlers = {
     },
 
     "PlayPauseIntent": function () {
-      makeRequest('enter').then(
+      makeRequest(CODES.PLAY_PAUSE).then(
         (success) => {
           this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
         },
