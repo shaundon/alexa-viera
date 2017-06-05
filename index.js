@@ -10,6 +10,8 @@ const CODES = {
   MUTE: 'mute',
   VOLUME_UP: 'volup,volup,volup,volup,volup',
   VOLUME_DOWN: 'voldown,voldown,voldown,voldown,voldown',
+  VOLUME_UP_HIGH: 'volup,volup,volup,volup,volup,volup,volup,volup,volup,volup',
+  VOLUME_DOWN_HIGH: 'voldown,voldown,voldown,voldown,voldown,voldown,voldown,voldown,voldown,voldown',
   PLAY_PAUSE: 'play'
 };
 
@@ -83,6 +85,30 @@ var handlers = {
 
     "VolDownIntent": function () {
       makeRequest(CODES.VOLUME_DOWN).then(
+        (success) => {
+          this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
+        },
+        (error) => {
+          this.emit(':tellWithCard', 'No', skillName, 'No');
+          console.log(error);
+        }
+      );
+    },
+
+    "VolUpHighIntent": function () {
+      makeRequest(CODES.VOLUME_UP_HIGH).then(
+        (success) => {
+          this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
+        },
+        (error) => {
+          this.emit(':tellWithCard', 'No', skillName, 'No');
+          console.log(error);
+        }
+      );
+    },
+
+    "VolDownHighIntent": function () {
+      makeRequest(CODES.VOLUME_DOWN_HIGH).then(
         (success) => {
           this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
         },
