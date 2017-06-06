@@ -7,6 +7,7 @@ const skillName = 'TV Remote';
 const CODES = {
   POWER: 'power',
   NETFLIX: 'netflix',
+  APPS: 'apps',
   MUTE: 'mute',
   VOLUME_UP: 'volup,volup,volup,volup,volup',
   VOLUME_DOWN: 'voldown,voldown,voldown,voldown,voldown',
@@ -35,7 +36,7 @@ const makeRequest = (command) => {
 
 var handlers = {
 
-    "TVIntent": function () {
+    "TVIntent"() {
       makeRequest(CODES.POWER).then(
         (success) => {
           this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
@@ -47,7 +48,7 @@ var handlers = {
       );
     },
 
-    "NetflixIntent": function () {
+    "NetflixIntent"() {
       makeRequest(CODES.NETFLIX).then(
         (success) => {
           this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
@@ -59,7 +60,19 @@ var handlers = {
       );
     },
 
-    "MuteIntent": function () {
+    "AppsIntent"() {
+      makeRequest(CODES.APPS).then(
+        (success) => {
+          this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
+        },
+        (error) => {
+          this.emit(':tellWithCard', 'No', skillName, 'No');
+          console.log(error);
+        }
+      );
+    },
+
+    "MuteIntent"() {
       makeRequest(CODES.MUTE).then(
         (success) => {
           this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
@@ -71,7 +84,7 @@ var handlers = {
       );
     },
 
-    "VolUpIntent": function () {
+    "VolUpIntent"() {
       makeRequest(CODES.VOLUME_UP).then(
         (success) => {
           this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
@@ -83,7 +96,7 @@ var handlers = {
       );
     },
 
-    "VolDownIntent": function () {
+    "VolDownIntent"() {
       makeRequest(CODES.VOLUME_DOWN).then(
         (success) => {
           this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
@@ -95,7 +108,7 @@ var handlers = {
       );
     },
 
-    "VolUpHighIntent": function () {
+    "VolUpHighIntent"() {
       makeRequest(CODES.VOLUME_UP_HIGH).then(
         (success) => {
           this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
@@ -107,7 +120,7 @@ var handlers = {
       );
     },
 
-    "VolDownHighIntent": function () {
+    "VolDownHighIntent"() {
       makeRequest(CODES.VOLUME_DOWN_HIGH).then(
         (success) => {
           this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
@@ -119,7 +132,7 @@ var handlers = {
       );
     },
 
-    "PlayPauseIntent": function () {
+    "PlayPauseIntent"() {
       makeRequest(CODES.PLAY_PAUSE).then(
         (success) => {
           this.emit(':tellWithCard', 'Ok', skillName, 'Ok');

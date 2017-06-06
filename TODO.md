@@ -3,6 +3,7 @@
 * Play/pause
 * Power on/off
 * Netflix
+* Apps menu
 * Volume up/down
 * Mute
 * Volume should go in increments of 5.
