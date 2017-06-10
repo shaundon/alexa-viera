@@ -13,7 +13,8 @@ const CODES = {
   VOLUME_DOWN: 'voldown,voldown,voldown,voldown,voldown',
   VOLUME_UP_HIGH: 'volup,volup,volup,volup,volup,volup,volup,volup,volup,volup',
   VOLUME_DOWN_HIGH: 'voldown,voldown,voldown,voldown,voldown,voldown,voldown,voldown,voldown,voldown',
-  PLAY_PAUSE: 'play'
+  PLAY: 'play',
+  PAUSE: 'pause'
 };
 
 const makeRequest = (command) => {
@@ -36,7 +37,7 @@ const makeRequest = (command) => {
 
 var handlers = {
 
-    "TVIntent"() {
+    "PowerIntent"() {
       makeRequest(CODES.POWER).then(
         (success) => {
           this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
@@ -132,8 +133,20 @@ var handlers = {
       );
     },
 
-    "PlayPauseIntent"() {
-      makeRequest(CODES.PLAY_PAUSE).then(
+    "PlayIntent"() {
+      makeRequest(CODES.PLAY).then(
+        (success) => {
+          this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
+        },
+        (error) => {
+          this.emit(':tellWithCard', 'No', skillName, 'No');
+          console.log(error);
+        }
+      );
+    },
+
+    "PauseIntent"() {
+      makeRequest(CODES.PLAY).then(
         (success) => {
           this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
         },
