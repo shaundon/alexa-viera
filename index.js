@@ -17,144 +17,61 @@ const CODES = {
   PAUSE: 'pause'
 };
 
-const makeRequest = (command) => {
-  return new Promise((fulfill, reject) => {
-    request({
-      method: 'GET',
-      uri: `${serverAddress}?command=${command}`,
-      headers: {
-        'Authorization': apiKey
-      }
-    }, (err, res, body) => {
-      if (err || res.statusCode !== 200) {
-        reject(err);
-        return;
-      }
-      fulfill(body);
-    })
+const makeRequest = (command, context) => {
+  request({
+    method: 'GET',
+    uri: `${serverAddress}?command=${command}`,
+    headers: {'Authorization': apiKey},
+  }, (err, res, body) => {
+    if (err || res.statusCode !== 200) {
+      context.emit(':tell', 'No');
+      console.error(error);
+      return;
+    }
+    context.emit(':tell', 'Ok');
   });
 };
 
 var handlers = {
 
     "PowerIntent"() {
-      makeRequest(CODES.POWER).then(
-        (success) => {
-          this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
-        },
-        (error) => {
-          this.emit(':tellWithCard', 'No', skillName, 'No');
-          console.log(error);
-        }
-      );
+      makeRequest(CODES.POWER, this);
     },
 
     "NetflixIntent"() {
-      makeRequest(CODES.NETFLIX).then(
-        (success) => {
-          this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
-        },
-        (error) => {
-          this.emit(':tellWithCard', 'No', skillName, 'No');
-          console.log(error);
-        }
-      );
+      makeRequest(CODES.NETFLIX, this);
     },
 
     "AppsIntent"() {
-      makeRequest(CODES.APPS).then(
-        (success) => {
-          this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
-        },
-        (error) => {
-          this.emit(':tellWithCard', 'No', skillName, 'No');
-          console.log(error);
-        }
-      );
+      makeRequest(CODES.APPS, this);
     },
 
     "MuteIntent"() {
-      makeRequest(CODES.MUTE).then(
-        (success) => {
-          this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
-        },
-        (error) => {
-          this.emit(':tellWithCard', 'No', skillName, 'No');
-          console.log(error);
-        }
-      );
+      makeRequest(CODES.MUTE, this);
     },
 
     "VolUpIntent"() {
-      makeRequest(CODES.VOLUME_UP).then(
-        (success) => {
-          this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
-        },
-        (error) => {
-          this.emit(':tellWithCard', 'No', skillName, 'No');
-          console.log(error);
-        }
-      );
+      makeRequest(CODES.VOLUME_UP, this);
     },
 
     "VolDownIntent"() {
-      makeRequest(CODES.VOLUME_DOWN).then(
-        (success) => {
-          this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
-        },
-        (error) => {
-          this.emit(':tellWithCard', 'No', skillName, 'No');
-          console.log(error);
-        }
-      );
+      makeRequest(CODES.VOLUME_DOWN, this);
     },
 
     "VolUpHighIntent"() {
-      makeRequest(CODES.VOLUME_UP_HIGH).then(
-        (success) => {
-          this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
-        },
-        (error) => {
-          this.emit(':tellWithCard', 'No', skillName, 'No');
-          console.log(error);
-        }
-      );
+      makeRequest(CODES.VOLUME_UP_HIGH, this);
     },
 
     "VolDownHighIntent"() {
-      makeRequest(CODES.VOLUME_DOWN_HIGH).then(
-        (success) => {
-          this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
-        },
-        (error) => {
-          this.emit(':tellWithCard', 'No', skillName, 'No');
-          console.log(error);
-        }
-      );
+      makeRequest(CODES.VOLUME_DOWN_HIGH, this);
     },
 
     "PlayIntent"() {
-      makeRequest(CODES.PLAY).then(
-        (success) => {
-          this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
-        },
-        (error) => {
-          this.emit(':tellWithCard', 'No', skillName, 'No');
-          console.log(error);
-        }
-      );
+      makeRequest(CODES.PLAY, this);
     },
 
     "PauseIntent"() {
-      makeRequest(CODES.PLAY).then(
-        (success) => {
-          this.emit(':tellWithCard', 'Ok', skillName, 'Ok');
-        },
-        (error) => {
-          this.emit(':tellWithCard', 'No', skillName, 'No');
-          console.log(error);
-        }
-      );
+      makeRequest(CODES.PLAY, this);
     },
 
     "AboutIntent": function () {
