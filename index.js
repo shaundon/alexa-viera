@@ -71,7 +71,7 @@ var handlers = {
     },
 
     "PauseIntent"() {
-      makeRequest(CODES.PLAY, this);
+      makeRequest(CODES.PAUSE, this);
     },
 
     "AboutIntent": function () {
